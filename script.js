@@ -13,7 +13,7 @@
     const WEDDING_DATE = new Date(2026, 6, 29, 18, 30, 0);
 
     // URL du Google Apps Script déployé (remplace par ton URL)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/XXXXXXXXXX/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzuTKCTphiEIBc6t1fSQqgRrzwh1gJUFA5BFjafW3I1K4m1xTVf6tV6PdrFke-Zr6b/exec';
 
     // =====================================================
     // PERMISSIONS PAR PARAMÈTRE URL
