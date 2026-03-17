@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariage — Invitation</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ======================== NAVBAR ======================== -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#" data-section="accueil">L & M</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                <ul class="navbar-nav gap-lg-1">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-section="accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item nav-mairie" style="display:none;">
+                        <a class="nav-link" href="#" data-section="mairie">Mairie</a>
+                    </li>
+                    <li class="nav-item nav-cocktail">
+                        <a class="nav-link" href="#" data-section="cocktail">Cocktail</a>
+                    </li>
+                    <li class="nav-item nav-chabat" style="display:none;">
+                        <a class="nav-link" href="#" data-section="chabat">Chabat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-section="rsvp">RSVP</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================== SECTION: ACCUEIL ======================== -->
+    <section id="accueil" class="page-section active">
+        <!-- Hero -->
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-particles" id="particles"></div>
+            <div class="container hero-content text-center">
+                <p class="hero-subtitle-top">Nous avons l'honneur de vous inviter au mariage de</p>
+                <h1 class="hero-names">Léa <span class="amp">&</span> Michaël</h1>
+                <div class="hero-ornament">
+                    <span class="ornament-line"></span>
+                    <span class="ornament-star"><i class="bi bi-star-of-david"></i></span>
+                    <span class="ornament-line"></span>
+                </div>
+                <p class="hero-date">Dimanche 14 Septembre 2026</p>
+                <div class="hero-countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-days">000</span>
+                        <span class="countdown-label">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-hours">00</span>
+                        <span class="countdown-label">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-mins">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-secs">00</span>
+                        <span class="countdown-label">Secondes</span>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-hero" data-section="rsvp">Confirmer ma présence</a>
+            </div>
+        </div>
+
+        <!-- Intro texte -->
+        <div class="container section-content text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Notre histoire</h2>
+                    <div class="section-ornament-small">
+                        <span class="ornament-line-sm"></span>
+                        <span class="ornament-diamond">◇</span>
+                        <span class="ornament-line-sm"></span>
+                    </div>
+                    <p class="intro-text">
+                        C'est avec une immense joie que nous vous convions à célébrer notre union.
+                        Votre présence à nos côtés en ce jour si spécial serait pour nous le plus beau des cadeaux.
+                    </p>
+                    <p class="intro-text">
+                        Nous avons hâte de partager ce moment unique avec vous, entourés de ceux qui comptent le plus à nos yeux.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== SECTION: MAIRIE ======================== -->
+    <section id="mairie" class="page-section">
+        <div class="container section-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="event-icon-wrap">
+                        <i class="bi bi-building event-icon"></i>
+                    </div>
+                    <h2 class="section-title">La Mairie</h2>
+                    <div class="section-ornament-small">
+                        <span class="ornament-line-sm"></span>
+                        <span class="ornament-diamond">◇</span>
+                        <span class="ornament-line-sm"></span>
+                    </div>
+                    <p class="event-subtitle">Cérémonie Civile</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-6">
+                    <div class="event-card">
+                        <div class="event-card-body">
+                            <div class="event-detail">
+                                <i class="bi bi-calendar3"></i>
+                                <div>
+                                    <strong>Date</strong>
+                                    <p>Dimanche 14 Septembre 2026</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-clock"></i>
+                                <div>
+                                    <strong>Heure</strong>
+                                    <p>10h00</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-geo-alt"></i>
+                                <div>
+                                    <strong>Lieu</strong>
+                                    <p>Mairie du 16ᵉ arrondissement<br>
+                                    71, avenue Henri-Martin, 75016 Paris</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Dress code</strong>
+                                    <p>Tenue de ville élégante</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-6 text-center">
+                    <a href="https://maps.google.com/?q=Mairie+du+16e+arrondissement+Paris" target="_blank" rel="noopener" class="btn btn-outline-event">
+                        <i class="bi bi-map me-2"></i>Voir sur Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== SECTION: COCKTAIL ======================== -->
+    <section id="cocktail" class="page-section">
+        <div class="container section-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="event-icon-wrap">
+                        <i class="bi bi-cup-straw event-icon"></i>
+                    </div>
+                    <h2 class="section-title">Le Cocktail</h2>
+                    <div class="section-ornament-small">
+                        <span class="ornament-line-sm"></span>
+                        <span class="ornament-diamond">◇</span>
+                        <span class="ornament-line-sm"></span>
+                    </div>
+                    <p class="event-subtitle">Réception & Soirée</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-6">
+                    <div class="event-card">
+                        <div class="event-card-body">
+                            <div class="event-detail">
+                                <i class="bi bi-calendar3"></i>
+                                <div>
+                                    <strong>Date</strong>
+                                    <p>Dimanche 14 Septembre 2026</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-clock"></i>
+                                <div>
+                                    <strong>Heure</strong>
+                                    <p>18h30</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-geo-alt"></i>
+                                <div>
+                                    <strong>Lieu</strong>
+                                    <p>Salle de réception — à confirmer<br>
+                                    Adresse à venir</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Dress code</strong>
+                                    <p>Tenue de soirée</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-8 text-center">
+                    <div class="event-note">
+                        <i class="bi bi-music-note-beehive"></i>
+                        <p>Un cocktail dînatoire sera suivi de musique et de danse pour fêter les mariés !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== SECTION: CHABAT ======================== -->
+    <section id="chabat" class="page-section">
+        <div class="container section-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="event-icon-wrap">
+                        <i class="bi bi-star-of-david event-icon"></i>
+                    </div>
+                    <h2 class="section-title">Le Chabat</h2>
+                    <div class="section-ornament-small">
+                        <span class="ornament-line-sm"></span>
+                        <span class="ornament-diamond">◇</span>
+                        <span class="ornament-line-sm"></span>
+                    </div>
+                    <p class="event-subtitle">Repas de Chabbat — Sheva Brakhot</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-6">
+                    <div class="event-card">
+                        <div class="event-card-body">
+                            <div class="event-detail">
+                                <i class="bi bi-calendar3"></i>
+                                <div>
+                                    <strong>Date</strong>
+                                    <p>Samedi 20 Septembre 2026</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-clock"></i>
+                                <div>
+                                    <strong>Heure</strong>
+                                    <p>12h30</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-geo-alt"></i>
+                                <div>
+                                    <strong>Lieu</strong>
+                                    <p>Lieu à confirmer</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-info-circle"></i>
+                                <div>
+                                    <strong>Dress code</strong>
+                                    <p>Tenue de Chabbat</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-8 text-center">
+                    <div class="event-note">
+                        <i class="bi bi-heart"></i>
+                        <p>Nous serons ravis de prolonger les festivités avec vous autour d'un repas de Chabbat chaleureux pour les Sheva Brakhot.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== SECTION: RSVP ======================== -->
+    <section id="rsvp" class="page-section">
+        <div class="container section-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="event-icon-wrap">
+                        <i class="bi bi-envelope-heart event-icon"></i>
+                    </div>
+                    <h2 class="section-title">RSVP</h2>
+                    <div class="section-ornament-small">
+                        <span class="ornament-line-sm"></span>
+                        <span class="ornament-diamond">◇</span>
+                        <span class="ornament-line-sm"></span>
+                    </div>
+                    <p class="event-subtitle">Merci de confirmer votre présence avant le 1ᵉʳ Juillet 2026</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-7">
+                    <!-- FORMULAIRE -->
+                    <div class="rsvp-card" id="rsvpFormCard">
+                        <form id="rsvpForm" novalidate>
+                            <!-- Nom -->
+                            <div class="mb-4">
+                                <label for="nom" class="form-label">Nom complet <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="nom" name="nom" required placeholder="Prénom Nom">
+                            </div>
+                            <!-- Email -->
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email <span class="required">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email" required placeholder="votre@email.com">
+                            </div>
+                            <!-- Téléphone -->
+                            <div class="mb-4">
+                                <label for="telephone" class="form-label">Téléphone</label>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="06 00 00 00 00">
+                            </div>
+                            <!-- Nombre d'invités -->
+                            <div class="mb-4">
+                                <label for="nbInvites" class="form-label">Nombre de personnes (vous inclus) <span class="required">*</span></label>
+                                <select class="form-select" id="nbInvites" name="nbInvites" required>
+                                    <option value="" disabled selected>Choisir</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5+</option>
+                                </select>
+                            </div>
+
+                            <!-- === PRÉSENCE MAIRIE (conditionnel) === -->
+                            <div class="mb-4 rsvp-field-mairie" style="display:none;">
+                                <label class="form-label">Serez-vous présent(e) à la Mairie ? <span class="required">*</span></label>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="presenceMairie" id="mairieOui" value="Oui">
+                                        <label class="form-check-label" for="mairieOui">Oui</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="presenceMairie" id="mairieNon" value="Non">
+                                        <label class="form-check-label" for="mairieNon">Non</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- === PRÉSENCE COCKTAIL (toujours visible) === -->
+                            <div class="mb-4">
+                                <label class="form-label">Serez-vous présent(e) au Cocktail ? <span class="required">*</span></label>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="presenceCocktail" id="cocktailOui" value="Oui">
+                                        <label class="form-check-label" for="cocktailOui">Oui</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="presenceCocktail" id="cocktailNon" value="Non">
+                                        <label class="form-check-label" for="cocktailNon">Non</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- === PRÉSENCE CHABAT (conditionnel) === -->
+                            <div class="mb-4 rsvp-field-chabat" style="display:none;">
+                                <label class="form-label">Serez-vous présent(e) au Chabat ? <span class="required">*</span></label>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="presenceChabat" id="chabatOui" value="Oui">
+                                        <label class="form-check-label" for="chabatOui">Oui</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="presenceChabat" id="chabatNon" value="Non">
+                                        <label class="form-check-label" for="chabatNon">Non</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-rsvp" id="btnSubmit">
+                                    <span class="btn-text">Envoyer ma réponse</span>
+                                    <span class="btn-loader d-none">
+                                        <span class="spinner-border spinner-border-sm me-2" role="status"></span>Envoi en cours…
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- MESSAGE DE SUCCÈS -->
+                    <div class="rsvp-success d-none" id="rsvpSuccess">
+                        <div class="success-icon">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <h3>Merci beaucoup !</h3>
+                        <p>Votre réponse a bien été enregistrée.<br>Nous avons hâte de célébrer avec vous !</p>
+                        <div class="success-hearts">
+                            <span>💜</span><span>🤍</span><span>💜</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer class="site-footer text-center">
+        <div class="container">
+            <div class="footer-ornament">
+                <span class="ornament-line-sm"></span>
+                <span class="ornament-diamond">◇</span>
+                <span class="ornament-line-sm"></span>
+            </div>
+            <p class="footer-names">Léa & Michaël</p>
+            <p class="footer-date">14 Septembre 2026</p>
+            <p class="footer-copy">Fait avec <i class="bi bi-heart-fill"></i> pour notre plus beau jour</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
