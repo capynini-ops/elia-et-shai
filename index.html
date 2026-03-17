@@ -27,14 +27,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navMenu">
                 <ul class="navbar-nav gap-lg-1">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" data-section="accueil">Accueil</a>
-                    </li>
                     <li class="nav-item nav-mairie" style="display:none;">
                         <a class="nav-link" href="#" data-section="mairie">Mairie</a>
                     </li>
                     <li class="nav-item nav-cocktail">
-                        <a class="nav-link" href="#" data-section="cocktail">Henné & Soirée</a>
+                        <a class="nav-link" href="#" data-section="cocktail">Houppa & Soirée</a>
                     </li>
                     <li class="nav-item nav-chabat" style="display:none;">
                         <a class="nav-link" href="#" data-section="chabat">Chabat</a>
@@ -49,59 +46,60 @@
 
     <!-- ======================== SECTION: ACCUEIL ======================== -->
     <section id="accueil" class="page-section active">
-        <!-- Hero -->
-        <div class="hero-section">
-            <div class="hero-overlay"></div>
-            <div class="hero-particles" id="particles"></div>
-            <div class="container hero-content text-center">
-                <p class="hero-subtitle-top">Nous avons l'honneur de vous inviter au mariage de</p>
-                <h1 class="hero-names">Elia <span class="amp">&</span> Shaï</h1>
-                <div class="hero-ornament">
-                    <span class="ornament-line"></span>
-                    <span class="ornament-star"><i class="bi bi-star-of-david"></i></span>
-                    <span class="ornament-line"></span>
+        <div class="hero-section-v2">
+            <div class="container text-center">
+
+                <!-- Logo / Monogramme -->
+                <div class="hero-logo">
+                    <img src="logo.png" alt="Logo Elia & Shaï" class="hero-logo-img">
                 </div>
-                <p class="hero-date">Mercredi 29 Juillet 2026</p>
+
+                <!-- Noms en hébreu -->
+                <h1 class="hero-names-hebrew">אליה & שי</h1>
+
+                <!-- Menu intégré dans le hero -->
+                <nav class="hero-nav" id="heroNav">
+                    <a href="#" class="hero-nav-link nav-mairie" data-section="mairie" style="display:none;">Mairie</a>
+                    <a href="#" class="hero-nav-link nav-cocktail" data-section="cocktail">Houppa & Soirée</a>
+                    <a href="#" class="hero-nav-link nav-chabat" data-section="chabat" style="display:none;">Chabat</a>
+                    <a href="#" class="hero-nav-link" data-section="rsvp">RSVP</a>
+                </nav>
+
+                <!-- Photo des mariés -->
+                <div class="hero-photo-wrap">
+                    <img src="photo-couple.jpg" alt="Elia & Shaï" class="hero-photo">
+                </div>
+
+                <!-- Dates -->
+                <div class="hero-dates">
+                    <p class="hero-date-fr">29 juillet 2026</p>
+                    <p class="hero-date-he">ט״ו באב&nbsp;&nbsp;5786</p>
+                </div>
+
+                <!-- Countdown -->
                 <div class="hero-countdown" id="countdown">
                     <div class="countdown-item">
-                        <span class="countdown-number" id="cd-days">000</span>
-                        <span class="countdown-label">Jours</span>
+                        <span class="countdown-number" id="cd-months">00</span>
+                        <span class="countdown-label">mois</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-days">00</span>
+                        <span class="countdown-label">jours</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="cd-hours">00</span>
-                        <span class="countdown-label">Heures</span>
+                        <span class="countdown-label">heures</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="cd-mins">00</span>
-                        <span class="countdown-label">Minutes</span>
+                        <span class="countdown-label">minutes</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="cd-secs">00</span>
-                        <span class="countdown-label">Secondes</span>
+                        <span class="countdown-label">secondes</span>
                     </div>
                 </div>
-                <a href="#" class="btn btn-hero" data-section="rsvp">Confirmer ma présence</a>
-            </div>
-        </div>
 
-        <!-- Intro texte -->
-        <div class="container section-content text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="section-title">Notre histoire</h2>
-                    <div class="section-ornament-small">
-                        <span class="ornament-line-sm"></span>
-                        <span class="ornament-diamond">◇</span>
-                        <span class="ornament-line-sm"></span>
-                    </div>
-                    <p class="intro-text">
-                        C'est avec une immense joie que nous vous convions à célébrer notre union.
-                        Votre présence à nos côtés en ce jour si spécial serait pour nous le plus beau des cadeaux.
-                    </p>
-                    <p class="intro-text">
-                        Nous avons hâte de partager ce moment unique avec vous, entourés de ceux qui comptent le plus à nos yeux.
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -178,13 +176,13 @@
                     <div class="event-icon-wrap">
                         <i class="bi bi-cup-straw event-icon"></i>
                     </div>
-                    <h2 class="section-title">Le Henné & Soirée</h2>
+                    <h2 class="section-title">Houppa & Soirée</h2>
                     <div class="section-ornament-small">
                         <span class="ornament-line-sm"></span>
                         <span class="ornament-diamond">◇</span>
                         <span class="ornament-line-sm"></span>
                     </div>
-                    <p class="event-subtitle">Henné & Soirée</p>
+                    <p class="event-subtitle">Houppa & Soirée</p>
                 </div>
             </div>
             <div class="row justify-content-center mt-4">
@@ -368,7 +366,7 @@
 
                             <!-- === PRÉSENCE COCKTAIL (toujours visible) === -->
                             <div class="mb-4">
-                                <label class="form-label">Serez-vous présent(e) au Henné & Soirée ? <span class="required">*</span></label>
+                                <label class="form-label">Serez-vous présent(e) à la Houppa & Soirée ? <span class="required">*</span></label>
                                 <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i>Mercredi 29 Juillet 2026 — 18h30</p>
                                 <div class="d-flex gap-3">
                                     <div class="form-check">

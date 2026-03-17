@@ -101,6 +101,9 @@
 
         // Scroll en haut
         window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Navbar : masquer sur accueil
+        updateNavbarVisibility(sectionId);
     }
 
     navLinks.forEach(link => {
@@ -112,13 +115,13 @@
     });
 
     // =====================================================
-    // COUNTDOWN
+    // COUNTDOWN (avec mois)
     // =====================================================
     function updateCountdown() {
         const now = new Date();
-        const diff = WEDDING_DATE - now;
 
-        if (diff <= 0) {
+        if (WEDDING_DATE <= now) {
+            document.getElementById('cd-months').textContent = '0';
             document.getElementById('cd-days').textContent = '0';
             document.getElementById('cd-hours').textContent = '0';
             document.getElementById('cd-mins').textContent = '0';
@@ -126,13 +129,27 @@
             return;
         }
 
+        // Calcul des mois complets restants
+        let months = (WEDDING_DATE.getFullYear() - now.getFullYear()) * 12
+                   + (WEDDING_DATE.getMonth() - now.getMonth());
+        // Date fictive = maintenant + ces mois
+        const tempDate = new Date(now);
+        tempDate.setMonth(tempDate.getMonth() + months);
+        // Si on a dépassé la date cible, on retire un mois
+        if (tempDate > WEDDING_DATE) {
+            months--;
+            tempDate.setMonth(tempDate.getMonth() - 1);
+        }
+
+        const diff = WEDDING_DATE - tempDate;
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const mins = Math.floor((diff / (1000 * 60)) % 60);
         const secs = Math.floor((diff / 1000) % 60);
 
+        document.getElementById('cd-months').textContent = months;
         document.getElementById('cd-days').textContent = days;
-        document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = hours;
         document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
         document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
     }
@@ -141,27 +158,17 @@
     setInterval(updateCountdown, 1000);
 
     // =====================================================
-    // HERO PARTICLES
+    // NAVBAR : masquer sur accueil, afficher sur les autres
     // =====================================================
-    function createParticles() {
-        const container = document.getElementById('particles');
-        if (!container) return;
-        const count = window.innerWidth < 768 ? 15 : 30;
+    const mainNav = document.getElementById('mainNav');
 
-        for (let i = 0; i < count; i++) {
-            const p = document.createElement('div');
-            p.classList.add('hero-particle');
-            p.style.left = Math.random() * 100 + '%';
-            p.style.top = Math.random() * 100 + '%';
-            p.style.animationDelay = Math.random() * 8 + 's';
-            p.style.animationDuration = (6 + Math.random() * 6) + 's';
-            p.style.width = (2 + Math.random() * 4) + 'px';
-            p.style.height = p.style.width;
-            container.appendChild(p);
+    function updateNavbarVisibility(sectionId) {
+        if (sectionId === 'accueil') {
+            mainNav.classList.add('nav-hidden');
+        } else {
+            mainNav.classList.remove('nav-hidden');
         }
     }
-
-    createParticles();
 
     // =====================================================
     // NAVBAR SCROLL EFFECT
@@ -240,6 +247,9 @@
     // INITIALISATION
     // =====================================================
     applyPermissions();
+
+    // Masquer la navbar fixe sur l'accueil (le menu est dans le hero)
+    updateNavbarVisibility('accueil');
 
     // Afficher la section Accueil avec animation
     const accueil = document.getElementById('accueil');
