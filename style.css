@@ -368,6 +368,31 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2rem 2.5rem;
 }
 
+/* ======================== EVENT PHOTOS ======================== */
+.event-photo-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.event-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ======================== EVENT SVG (Houppa) ======================== */
+.event-svg-wrap {
+    text-align: center;
+}
+
+.event-svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
 .event-detail {
     display: flex;
     align-items: flex-start;
