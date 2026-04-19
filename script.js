@@ -10,7 +10,7 @@
     // CONFIG — À MODIFIER
     // =====================================================
     // Date du mariage (mois 0-indexé : 6 = juillet)
-    const WEDDING_DATE = new Date(2026, 6, 29, 18, 30, 0);
+    const WEDDING_DATE = new Date(2026, 6, 29, 17, 30, 0);
 
     // URL du Google Apps Script déployé (remplace par ton URL)
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzuTKCTphiEIBc6t1fSQqgRrzwh1gJUFA5BFjafW3I1K4m1xTVf6tV6PdrFke-Zr6b/exec';

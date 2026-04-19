@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navMenu">
                 <ul class="navbar-nav gap-lg-1">
                     <li class="nav-item nav-mairie" style="display:none;">
-                        <a class="nav-link" href="#" data-section="mairie">Mairie</a>
+                        <a class="nav-link" href="#" data-section="mairie">Mairie & Henné</a>
                     </li>
                     <li class="nav-item nav-cocktail">
                         <a class="nav-link" href="#" data-section="cocktail">Houppa & Soirée</a>
@@ -61,7 +61,7 @@
 
                 <!-- Menu intégré dans le hero -->
                 <nav class="hero-nav" id="heroNav">
-                    <a href="#" class="hero-nav-link nav-mairie" data-section="mairie" style="display:none;">Mairie</a>
+                    <a href="#" class="hero-nav-link nav-mairie" data-section="mairie" style="display:none;">Mairie & Henné</a>
                     <a href="#" class="hero-nav-link nav-cocktail" data-section="cocktail">Houppa & Soirée</a>
                     <a href="#" class="hero-nav-link nav-chabat" data-section="chabat" style="display:none;">Chabat</a>
                     <a href="#" class="hero-nav-link" data-section="rsvp">Réponse</a>
@@ -106,12 +106,28 @@
         </div>
     </section>
 
-    <!-- ======================== SECTION: MAIRIE ======================== -->
+    <!-- ======================== SECTION: MAIRIE & HENNÉ ======================== -->
     <section id="mairie" class="page-section">
         <div class="container section-content">
+            <!-- Titre principal -->
             <div class="row justify-content-center text-center mb-4">
                 <div class="col-lg-8">
-                    <h2 class="section-title">La Mairie</h2>
+                    <h2 class="section-title">Mairie & Henné</h2>
+                </div>
+            </div>
+
+            <!-- Photo pleine largeur -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-7">
+                    <div class="event-photo-wrap">
+                        <img src="photo-mairie.jpg" alt="La Mairie" class="event-photo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- === BLOC 1 : MAIRIE === -->
+            <div class="row justify-content-center text-center mb-4">
+                <div class="col-lg-8">
                     <div class="section-ornament-small">
                         <span class="ornament-line-sm"></span>
                         <span class="ornament-diamond">◇</span>
@@ -120,15 +136,8 @@
                     <p class="event-subtitle">Cérémonie Civile</p>
                 </div>
             </div>
-            <div class="row align-items-center justify-content-center g-4">
-                <!-- Photo -->
-                <div class="col-lg-5">
-                    <div class="event-photo-wrap">
-                        <img src="photo-mairie.jpg" alt="La Mairie" class="event-photo">
-                    </div>
-                </div>
-                <!-- Infos -->
-                <div class="col-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
                     <div class="event-card">
                         <div class="event-card-body">
                             <div class="event-detail">
@@ -167,11 +176,52 @@
                             <span>Waze</span>
                         </a>
                     </div>
-                    <div class="text-center mt-3">
-                        <div class="event-note d-inline-flex">
-                            <i class="bi bi-heart"></i>
-                            <p>La mairie sera <b>suivie d'un henné</b> au 37 avenue de la ruche, 95200 Sarcelles</p>
+                </div>
+            </div>
+
+            <!-- === BLOC 2 : HENNÉ === -->
+            <div class="row justify-content-center text-center mb-4 mt-5">
+                <div class="col-lg-8">
+                    <div class="section-ornament-small">
+                        <span class="ornament-line-sm"></span>
+                        <span class="ornament-diamond">◇</span>
+                        <span class="ornament-line-sm"></span>
+                    </div>
+                    <p class="event-subtitle">Henné</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="event-card">
+                        <div class="event-card-body">
+                            <div class="event-detail">
+                                <i class="bi bi-clock"></i>
+                                <div>
+                                    <strong>Horaire</strong>
+                                    <p>Après la mairie</p>
+                                </div>
+                            </div>
+                            <div class="event-detail">
+                                <i class="bi bi-geo-alt"></i>
+                                <div>
+                                    <strong>Lieu</strong>
+                                    <p>Chez Shaï<br>
+                                    37 avenue de la Ruche, 95200 Sarcelles</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div class="event-map-links">
+                        <a href="https://www.google.com/maps/search/?api=1&query=37+avenue+de+la+Ruche%2C+95200+Sarcelles"
+                           target="_blank" rel="noopener" class="btn-map btn-map-google">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span>Google Maps</span>
+                        </a>
+                        <a href="https://waze.com/ul?q=37%20avenue%20de%20la%20Ruche%2095200%20Sarcelles&navigate=yes"
+                           target="_blank" rel="noopener" class="btn-map btn-map-waze">
+                            <i class="bi bi-navigation-fill"></i>
+                            <span>Waze</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -189,8 +239,6 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <div class="venue-block">
-                        <p class="venue-name">Le Baccara Ritz Plazza</p>
-                        <p class="venue-address">61 rue Saint André, 93000 Bobigny</p>
                         <div class="event-map-links justify-content-center">
                             <a href="https://www.google.com/maps/search/?api=1&query=Le+Baccara+Ritz+Plazza%2C+61+rue+Saint+Andr%C3%A9%2C+93000+Bobigny"
                                target="_blank" rel="noopener" class="btn-map btn-map-google">
@@ -343,7 +391,7 @@
 
                             <!-- === PRÉSENCE MAIRIE (conditionnel) === -->
                             <div class="mb-4 rsvp-field-mairie" style="display:none;">
-                                <label class="form-label">Serez-vous présent(e) à la Mairie ? <span class="required">*</span></label>
+                                <label class="form-label">Serez-vous présent(e) à la Mairie & au Henné ? <span class="required">*</span></label>
                                 <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i>Dimanche 26 Juillet 2026 — 14h00</p>
                                 <div class="d-flex gap-3">
                                     <div class="form-check">
@@ -360,7 +408,7 @@
                             <!-- === PRÉSENCE COCKTAIL (toujours visible) === -->
                             <div class="mb-4">
                                 <label class="form-label">Serez-vous présent(e) à la Houppa & Soirée ? <span class="required">*</span></label>
-                                <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i>Mercredi 29 Juillet 2026 — 18h30</p>
+                                <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i>Mercredi 29 Juillet 2026 — 17h30</p>
                                 <div class="d-flex gap-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="presenceCocktail" id="cocktailOui" value="Oui">
@@ -376,7 +424,7 @@
                             <!-- === PRÉSENCE CHABAT (conditionnel) === -->
                             <div class="mb-4 rsvp-field-chabat" style="display:none;">
                                 <label class="form-label">Serez-vous présent(e) au Chabat ? <span class="required">*</span></label>
-                                <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i>Vendredi 31 Juillet 2026 — 12h30</p>
+                                <p class="small text-muted mb-2"><i class="bi bi-calendar-event me-1"></i>Vendredi 31 Juillet 2026 — 20h</p>
                                 <div class="d-flex gap-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="presenceChabat" id="chabatOui" value="Oui">
