@@ -23,6 +23,7 @@
 
     --font-display: 'Cormorant Garamond', serif;
     --font-body: 'Josefin Sans', sans-serif;
+    --font-hebrew: 'Tinos', serif;
 
     --radius: 12px;
     --radius-lg: 20px;
@@ -81,11 +82,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--primary-dark) !important;
-    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+
+.navbar-logo {
+    height: 48px;
+    width: auto;
+    transition: var(--transition);
+}
+
+#mainNav.scrolled .navbar-logo {
+    height: 40px;
 }
 
 .nav-link {
@@ -174,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Noms en hébreu */
 .hero-names-hebrew {
-    font-family: var(--font-display);
+    font-family: var(--font-hebrew);
     font-size: clamp(2rem, 6vw, 3.2rem);
     font-weight: 400;
     color: var(--primary);
@@ -252,9 +261,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-date-he {
-    font-family: var(--font-display);
+    font-family: var(--font-hebrew);
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--primary);
     direction: rtl;
     margin: 0;
@@ -474,6 +483,95 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(172, 151, 207, 0.3);
+}
+
+/* ======================== MAP LINKS (Maps / Waze) ======================== */
+.event-map-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.btn-map {
+    flex: 1 1 0;
+    min-width: 140px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    border: 1.5px solid transparent;
+}
+
+.btn-map i {
+    font-size: 1rem;
+}
+
+.btn-map-google {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.btn-map-google:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(172, 151, 207, 0.3);
+}
+
+.btn-map-waze {
+    background: transparent;
+    color: var(--primary-dark);
+    border-color: var(--primary);
+}
+
+.btn-map-waze:hover {
+    background: var(--primary-ghost);
+    color: var(--primary-darker);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(172, 151, 207, 0.2);
+}
+
+/* ======================== VENUE BLOCK (Houppa) ======================== */
+.venue-block {
+    margin-top: 2rem;
+    padding: 1.5rem 1rem;
+}
+
+.venue-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--primary-dark);
+    margin: 0 0 0.25rem;
+}
+
+.venue-address {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin: 0 0 1.25rem;
+}
+
+.venue-block .event-map-links {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
 }
 
 /* ======================== RSVP ======================== */
