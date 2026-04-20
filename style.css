@@ -391,33 +391,88 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
 }
 
-/* ======================== HOUPPA HERO (image pleine largeur) ======================== */
+/* ======================== HOUPPA — Layout section entière ======================== */
+.houppa-wrapper {
+    background: var(--bg-cream);
+    /* Compense la navbar fixe en haut de la section */
+    padding-top: 100px;
+}
+
+/* Colonne PHOTO (gauche en desktop, dessus en mobile) */
+.houppa-photo-col {
+    padding: 0 1.5rem;
+}
+
+.houppa-photo-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.houppa-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Colonne CONTENU (droite en desktop, dessous en mobile) */
+.houppa-content-col {
+    padding: 0 1.5rem;
+}
+
+/* SVG invitations (en-tête hébreu + parents) */
 .houppa-hero {
     width: 100%;
-    padding: 1.5rem 1.5rem;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background: var(--bg-cream);
 }
 
-/* Le premier hero de la section Houppa compense la navbar fixe */
-#cocktail .houppa-hero:first-of-type {
-    padding-top: 130px;
-}
-
-/* Les hero suivants ont un espacement réduit au-dessus pour coller à l'élément précédent */
-#cocktail .houppa-hero + .houppa-hero {
+.houppa-hero + .houppa-hero {
     padding-top: 0;
 }
 
 .houppa-invitation {
     width: 100%;
     height: auto;
-    max-width: 100%;
+    max-width: 700px;
     display: block;
-    /* Sur grand écran on limite un peu pour éviter que l'image ne devienne absurde */
-    max-width: 900px;
+}
+
+/* Wrap pour le texte d'invitation dans la colonne */
+.houppa-invite-text-wrap {
+    text-align: center;
+}
+
+/* ===== Desktop (lg+) : photo collante à gauche, contenu qui scrolle à droite ===== */
+@media (min-width: 992px) {
+    .houppa-photo-col {
+        /* Photo sticky : reste visible quand on scrolle le contenu à droite */
+        position: sticky;
+        top: 100px;
+        padding-left: 2rem;
+        padding-right: 1rem;
+    }
+
+    .houppa-photo {
+        /* Hauteur maximale pour éviter qu'elle ne soit trop grande sur un très grand écran */
+        max-height: calc(100vh - 140px);
+        object-fit: cover;
+    }
+
+    .houppa-content-col {
+        padding-left: 1rem;
+        padding-right: 2rem;
+    }
+}
+
+/* ===== Mobile (sous 992px) : photo dessus, contenu dessous ===== */
+@media (max-width: 991.98px) {
+    .houppa-photo-col {
+        margin-bottom: 2rem;
+    }
 }
 
 .event-detail {
@@ -850,13 +905,9 @@ h1, h2, h3, h4, h5, h6 {
         --bs-gutter-y: 1.75rem;
     }
 
-    /* Sur mobile, la Houppa hero a des marges latérales pour respirer */
-    .houppa-hero {
-        padding: 1rem 1rem;
-    }
-
-    #cocktail .houppa-hero:first-of-type {
-        padding-top: 110px;
+    /* Sur mobile, on réduit la compensation navbar pour la section Houppa */
+    .houppa-wrapper {
+        padding-top: 85px;
     }
 
     /* Boutons map : plus d'espace au-dessus */
