@@ -326,6 +326,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ratio d'aspect constant en desktop pour que toutes les photos s'alignent identiquement */
 @media (min-width: 992px) {
+    /* Les cols avec photo doivent s'étirer à la hauteur de la col contenu pour que le sticky
+       ait de l'espace dans lequel "glisser". On force donc align-self sur stretch
+       (malgré le align-items-start de la row qui s'applique par défaut à toutes les cols). */
+    .row.align-items-start.g-4 > .col-lg-5 {
+        align-self: stretch;
+    }
+
     .event-photo-wrap {
         aspect-ratio: 4 / 5;
         /* La photo suit le scroll tant que la zone parent (colonne) est visible.
