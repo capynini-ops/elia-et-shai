@@ -872,3 +872,77 @@ h1, h2, h3, h4, h5, h6 {
         min-width: 55px;
     }
 }
+
+/* ======================== BOUTON MUSIQUE (flottant) ======================== */
+.btn-music {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--bg-white);
+    border: 1.5px solid var(--primary-pale);
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(110, 86, 158, 0.15);
+    transition: var(--transition);
+    z-index: 1040;
+    padding: 0;
+}
+
+.btn-music:hover {
+    transform: translateY(-2px) scale(1.05);
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(172, 151, 207, 0.25);
+    color: var(--primary);
+}
+
+.btn-music svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Affiche l'icône "muet" par défaut, masque l'icône "playing" */
+.btn-music .icon-playing { display: none; }
+.btn-music .icon-muted   { display: block; }
+
+/* Quand la musique joue : inverse les icônes */
+.btn-music.is-playing .icon-playing { display: block; }
+.btn-music.is-playing .icon-muted   { display: none; }
+
+/* Animation douce quand la musique joue (petit pulse subtil) */
+.btn-music.is-playing {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    animation: musicPulse 2.5s ease-in-out infinite;
+}
+
+.btn-music.is-playing:hover {
+    background: var(--primary-dark);
+    color: #fff;
+}
+
+@keyframes musicPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(172, 151, 207, 0.25); }
+    50%      { box-shadow: 0 4px 28px rgba(172, 151, 207, 0.5); }
+}
+
+/* Responsive : un peu plus petit sur mobile */
+@media (max-width: 575.98px) {
+    .btn-music {
+        width: 46px;
+        height: 46px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    .btn-music svg {
+        width: 20px;
+        height: 20px;
+    }
+}

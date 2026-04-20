@@ -13,7 +13,8 @@
     const WEDDING_DATE = new Date(2026, 6, 29, 17, 30, 0);
 
     // URL du Google Apps Script déployé (remplace par ton URL)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSFCRChzA9hsJ6mzmgz1RCRNmJ2iRhQ-di8q-2MBCwbPh_Rx8Jq0TfFFdWkB5LmF6w/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzuTKCTphiEIBc6t1fSQqgRrzwh1gJUFA5BFjafW3I1K4m1xTVf6tV6PdrFke-Zr6b/exec';
+
     // =====================================================
     // PERMISSIONS PAR PARAMÈTRE URL
     // =====================================================
@@ -304,6 +305,61 @@
             requestAnimationFrame(() => {
                 accueil.classList.add('visible');
             });
+        });
+    }
+
+    // =====================================================
+    // MUSIQUE DE FOND
+    // =====================================================
+    const bgMusic = document.getElementById('bgMusic');
+    const btnMusic = document.getElementById('btnMusic');
+
+    if (bgMusic && btnMusic) {
+        // État initial
+        let userPausedManually = false;
+        bgMusic.volume = 0.4; // Volume raisonnable : ni trop fort, ni trop faible
+
+        // Tenter de démarrer la musique dès la première interaction utilisateur.
+        // Les navigateurs bloquent l'autoplay sans interaction, donc on attend
+        // n'importe quel clic, touche clavier ou toucher d'écran pour lancer.
+        function tryAutoStart() {
+            if (userPausedManually) return; // Si déjà coupé par l'utilisateur, ne rien faire
+            bgMusic.play()
+                .then(() => {
+                    btnMusic.classList.add('is-playing');
+                    btnMusic.setAttribute('aria-pressed', 'true');
+                    btnMusic.setAttribute('aria-label', 'Couper la musique');
+                })
+                .catch(() => {
+                    // Silencieusement ignoré : l'utilisateur pourra cliquer sur le bouton
+                });
+        }
+
+        // Première interaction utilisateur = premier déclenchement
+        // { once: true } : l'écouteur se supprime automatiquement après la première exécution
+        ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
+            document.addEventListener(evt, tryAutoStart, { once: true, passive: true });
+        });
+
+        // Toggle manuel via le bouton
+        btnMusic.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (bgMusic.paused) {
+                bgMusic.play()
+                    .then(() => {
+                        userPausedManually = false;
+                        btnMusic.classList.add('is-playing');
+                        btnMusic.setAttribute('aria-pressed', 'true');
+                        btnMusic.setAttribute('aria-label', 'Couper la musique');
+                    })
+                    .catch(err => console.warn('Lecture bloquée :', err));
+            } else {
+                bgMusic.pause();
+                userPausedManually = true;
+                btnMusic.classList.remove('is-playing');
+                btnMusic.setAttribute('aria-pressed', 'false');
+                btnMusic.setAttribute('aria-label', 'Activer la musique');
+            }
         });
     }
 
