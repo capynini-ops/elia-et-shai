@@ -336,9 +336,24 @@
         }
 
         // Première interaction utilisateur = premier déclenchement
-        // { once: true } : l'écouteur se supprime automatiquement après la première exécution
-        ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt => {
-            document.addEventListener(evt, tryAutoStart, { once: true, passive: true });
+        // Les navigateurs n'acceptent que certains événements comme "interaction utilisateur"
+        // pour débloquer l'audio : click, touchstart, keydown, pointerdown, wheel sont OK.
+        // Le scroll pur ne suffit PAS (il peut être involontaire via touchpad).
+        // On retente donc à chaque événement tant que la musique n'est pas lancée.
+        const triggerEvents = ['click', 'touchstart', 'touchend', 'keydown', 'pointerdown', 'wheel', 'scroll'];
+
+        function handleFirstInteraction() {
+            tryAutoStart();
+            // Si la musique a bien démarré, on peut retirer tous les listeners
+            if (!bgMusic.paused) {
+                triggerEvents.forEach(evt => {
+                    document.removeEventListener(evt, handleFirstInteraction);
+                });
+            }
+        }
+
+        triggerEvents.forEach(evt => {
+            document.addEventListener(evt, handleFirstInteraction, { passive: true });
         });
 
         // Toggle manuel via le bouton
