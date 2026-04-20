@@ -18,23 +18,39 @@
 </head>
 <body>
 
-    <!-- ======================== OVERLAY ENVELOPPE (intro) ======================== -->
-    <div id="envelopeOverlay" class="envelope-overlay" role="dialog" aria-modal="true" aria-label="Invitation — Cliquez pour ouvrir">
-        <div class="envelope" id="envelope" tabindex="0" role="button" aria-label="Cliquez pour ouvrir l'invitation">
-
-            <!-- Corps de l'enveloppe (fond) -->
-            <div class="envelope-body"></div>
-
-            <!-- Rabat triangulaire (pivote au clic) -->
-            <div class="envelope-flap"></div>
-
-            <!-- Sceau de cire avec logo (s'envole au clic) -->
-            <div class="envelope-seal">
-                <img src="logo.svg" alt="Elia & Shaï" class="envelope-seal-logo">
+    <!-- ======================== NAVBAR ======================== -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#accueil" aria-label="Accueil — Elia & Shaï">
+                <img src="logo.png" alt="Elia & Shaï" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                <ul class="navbar-nav gap-lg-1">
+                    <li class="nav-item nav-mairie">
+                        <a class="nav-link" href="#mairie">Mairie &amp; Henné</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cocktail">Houppa &amp; Soirée</a>
+                    </li>
+                    <li class="nav-item nav-chabat">
+                        <a class="nav-link" href="#chabat">Chabat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rsvp">Réponse</a>
+                    </li>
+                </ul>
             </div>
+        </div>
+    </nav>
 
-            <!-- Invitation à cliquer -->
-            <p class="envelope-hint">Cliquez pour ouvrir</p>
+    <!-- ======================== OVERLAY INTRO (photo + bouton) ======================== -->
+    <div id="envelopeOverlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Bienvenue — Cliquez pour entrer">
+        <img src="photo-couple.jpg" alt="" class="intro-overlay-photo" aria-hidden="true">
+        <div class="intro-overlay-content">
+            <button type="button" id="envelope" class="intro-overlay-btn">Vous êtes invités</button>
         </div>
     </div>
 
@@ -44,7 +60,9 @@
             <div class="row align-items-start justify-content-center g-4">
                 <!-- Photo à gauche -->
                 <div class="col-lg-5">
-                  
+                    <div class="event-photo-wrap">
+                        <img src="photo-couple.jpg" alt="Elia & Shaï" class="event-photo">
+                    </div>
                 </div>
 
                 <!-- Logo, noms, dates, countdown à droite -->

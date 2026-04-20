@@ -59,19 +59,103 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
+/* ======================== NAVBAR ======================== */
+#mainNav {
+    background: rgba(250, 248, 253, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(172, 151, 207, 0.12);
+    padding: 0.4rem 0;
+    transition: var(--transition);
+    z-index: 1050;
+}
+
+#mainNav.scrolled {
+    background: rgba(250, 248, 253, 0.97);
+    box-shadow: var(--shadow-soft);
+    padding: 0.25rem 0;
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+
+.navbar-logo {
+    height: 64px;
+    width: auto;
+    transition: var(--transition);
+}
+
+#mainNav.scrolled .navbar-logo {
+    height: 52px;
+}
+
+.nav-link {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-body) !important;
+    padding: 0.5rem 1rem !important;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-dark) !important;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 60%;
+}
+
+.navbar-toggler {
+    border: 1px solid var(--primary-light);
+    padding: 0.4rem 0.6rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(172, 151, 207, 0.25);
+}
+
 /* ======================== PAGES / SECTIONS ======================== */
 /* Mode monopage : toutes les sections sont visibles et s'enchaînent en scroll.
    Elles sont masquées uniquement via .section-hidden (permissions URL). */
 .page-section {
     display: block;
+    /* Compense la navbar fixe lors du scroll par ancre (#mairie, #cocktail, etc.) */
+    scroll-margin-top: 85px;
 }
 
-.page-section.section-hidden {
-    display: none;
+/* Masquer à la fois les sections et les liens de nav qui portent cette classe */
+.section-hidden {
+    display: none !important;
 }
 
 .section-content {
     padding: 40px 0 40px;
+}
+
+/* La section accueil a besoin d'un padding-top plus grand pour dégager la navbar fixe */
+#accueil .section-content {
+    padding-top: 100px;
 }
 
 /* ======================== ACCUEIL (HERO) ======================== */
@@ -662,6 +746,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ======================== RESPONSIVE ======================== */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: rgba(250, 248, 253, 0.98);
+        border-radius: var(--radius);
+        margin-top: 0.5rem;
+        padding: 1rem;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .nav-link {
+        padding: 0.6rem 1rem !important;
+    }
+}
+
 @media (max-width: 767.98px) {
     .hero-names {
         font-size: clamp(2.5rem, 12vw, 4rem);
@@ -802,207 +900,102 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ============================================================
-   OVERLAY ENVELOPPE (écran d'intro)
+   OVERLAY INTRO (photo + bouton "Vous êtes invités")
    ============================================================ */
-.envelope-overlay {
+.intro-overlay {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: linear-gradient(135deg, var(--primary-pale) 0%, var(--primary-ghost) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
-    /* perspective : crée la profondeur 3D pour les transformations 3D des enfants */
-    perspective: 1200px;
-    transition: opacity 0.6s ease 0.6s, visibility 0.6s ease 0.6s;
+    overflow: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
-.envelope-overlay.is-opening {
+.intro-overlay.is-opening {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
-/* Conteneur de l'enveloppe */
-.envelope {
-    position: relative;
-    width: min(400px, 90vw);
-    aspect-ratio: 400 / 280;
-    cursor: pointer;
-    /* Animation flottante légère avant le clic */
-    animation: envelopeFloat 3s ease-in-out infinite;
-    /* Préserve les transformations 3D des enfants */
-    transform-style: preserve-3d;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.envelope:hover,
-.envelope:focus-visible {
-    transform: scale(1.03);
-    outline: none;
-}
-
-/* Corps de l'enveloppe (fond lilas) */
-.envelope-body {
+/* Photo en plein écran, comportement cover */
+.intro-overlay-photo {
     position: absolute;
-    inset: 10% 5% 0 5%;
-    background: var(--primary);
-    border-radius: 4px;
-    box-shadow:
-        0 10px 30px rgba(110, 86, 158, 0.3),
-        inset 0 -2px 6px rgba(0, 0, 0, 0.08);
-}
-
-/* Lignes de pli diagonales sur le corps (effet enveloppe) */
-.envelope-body::before,
-.envelope-body::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top right, transparent 49.7%, var(--primary-dark) 49.7%, var(--primary-dark) 50.3%, transparent 50.3%);
-    opacity: 0.25;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
 }
 
-.envelope-body::after {
-    background: linear-gradient(to top left, transparent 49.7%, var(--primary-dark) 49.7%, var(--primary-dark) 50.3%, transparent 50.3%);
-}
-
-/* Rabat triangulaire (pivote au clic) */
-.envelope-flap {
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    right: 5%;
-    /* Hauteur du rabat : moitié de la hauteur totale de l'enveloppe */
-    height: 47%;
-    background: var(--primary-dark);
-    /* Forme triangulaire via clip-path */
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    /* Le pivot est en haut du rabat (bord supérieur de l'enveloppe) */
-    transform-origin: 50% 0%;
-    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-    /* Au-dessus du corps pour cacher le sceau au départ ? Non, le sceau est par dessus */
-    z-index: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-}
-
-/* Sceau de cire avec logo (reste visible, s'envole à l'ouverture) */
-.envelope-seal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, var(--primary-dark) 0%, var(--primary-darker) 70%, #4a3478 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow:
-        inset 0 -4px 10px rgba(0, 0, 0, 0.3),
-        inset 0 4px 10px rgba(255, 255, 255, 0.15),
-        0 6px 20px rgba(0, 0, 0, 0.25);
-    /* Le sceau est au-dessus de tout pour être visible */
-    z-index: 3;
-    transition:
-        transform 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.3s,
-        opacity 0.5s ease 0.5s;
-}
-
-/* Bord ondulé du sceau (simulant la cire pressée) */
-.envelope-seal::before {
+/* Voile sombre pour garantir la lisibilité du bouton */
+.intro-overlay::after {
     content: '';
     position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    background: repeating-conic-gradient(
-        var(--primary-darker) 0deg 12deg,
-        var(--primary-dark) 12deg 24deg
-    );
-    z-index: -1;
-    opacity: 0.9;
-    filter: blur(1px);
+    inset: 0;
+    background: linear-gradient(180deg, rgba(58, 26, 109, 0.15) 0%, rgba(58, 26, 109, 0.55) 100%);
+    z-index: 2;
 }
 
-.envelope:hover .envelope-seal {
-    transform: translate(-50%, -50%) scale(1.05);
+/* Contenu au-dessus du voile */
+.intro-overlay-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 2rem;
 }
 
-.envelope-seal-logo {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-    filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+/* Bouton "Vous êtes invités" */
+.intro-overlay-btn {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 500;
+    color: #fff;
+    background: transparent;
+    border: 2px solid #fff;
+    padding: 1rem 3rem;
+    border-radius: 0;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+    animation: introBtnPulse 2.8s ease-in-out infinite;
 }
 
-/* Hint "Cliquez pour ouvrir" */
-.envelope-hint {
-    position: absolute;
-    left: 50%;
-    bottom: -3rem;
-    transform: translateX(-50%);
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--primary-dark);
-    margin: 0;
-    white-space: nowrap;
-    animation: hintPulse 2s ease-in-out infinite;
-    transition: opacity 0.3s ease;
-}
-
-/* ================= ÉTAT "OUVERT" ================= */
-
-/* Le rabat pivote vers l'arrière (ouverture de l'enveloppe) */
-.envelope.is-open .envelope-flap {
-    transform: rotateX(-180deg);
-}
-
-/* Le sceau se détache vers le haut et disparaît */
-.envelope.is-open .envelope-seal {
-    transform: translate(-50%, -300%) scale(0.6) rotate(-15deg);
-    opacity: 0;
-}
-
-/* Stoppe le flottement quand on ouvre */
-.envelope.is-open {
+.intro-overlay-btn:hover,
+.intro-overlay-btn:focus-visible {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-darker);
+    transform: scale(1.04);
+    outline: none;
     animation: none;
 }
 
-/* Le hint disparaît immédiatement au clic */
-.envelope.is-open .envelope-hint {
-    opacity: 0;
+.intro-overlay-btn:active {
+    transform: scale(0.98);
 }
 
-/* ================= ANIMATIONS ================= */
-
-@keyframes envelopeFloat {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
-}
-
-@keyframes hintPulse {
-    0%, 100% { opacity: 0.6; }
-    50%      { opacity: 1; }
-}
-
-/* Responsive */
-@media (max-width: 575.98px) {
-    .envelope-seal {
-        width: 100px;
-        height: 100px;
+/* Animation subtile pour attirer l'œil */
+@keyframes introBtnPulse {
+    0%, 100% {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
     }
-    .envelope-hint {
-        font-size: 0.75rem;
-        letter-spacing: 0.15em;
-        bottom: -2.5rem;
+    50% {
+        box-shadow: 0 4px 40px rgba(255, 255, 255, 0.35), 0 4px 30px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* Mobile : bouton un peu plus compact */
+@media (max-width: 575.98px) {
+    .intro-overlay-btn {
+        padding: 0.85rem 2rem;
     }
 }
 
@@ -1010,6 +1003,7 @@ h1, h2, h3, h4, h5, h6 {
 body.envelope-open {
     overflow: hidden;
 }
+
 
 /* ============================================================
    HOUPPA — BLOC TEXTE D'INVITATION

@@ -154,6 +154,34 @@
     setInterval(updateCountdown, 1000);
 
     // =====================================================
+    // NAVBAR — scroll effect + fermeture menu après clic sur un lien
+    // =====================================================
+    const mainNav = document.getElementById('mainNav');
+
+    if (mainNav) {
+        // Effet "scrolled" qui densifie la navbar après 50px de scroll
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                mainNav.classList.add('scrolled');
+            } else {
+                mainNav.classList.remove('scrolled');
+            }
+        }, { passive: true });
+
+        // Fermer le menu hamburger après un clic sur un lien (UX mobile)
+        document.querySelectorAll('#navMenu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navCollapse = document.getElementById('navMenu');
+                if (navCollapse && navCollapse.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navCollapse)
+                                     || new bootstrap.Collapse(navCollapse, { toggle: false });
+                    bsCollapse.hide();
+                }
+            });
+        });
+    }
+
+    // =====================================================
     // RSVP FORM
     // =====================================================
     const form = document.getElementById('rsvpForm');
