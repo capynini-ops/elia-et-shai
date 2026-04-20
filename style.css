@@ -328,6 +328,10 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 992px) {
     .event-photo-wrap {
         aspect-ratio: 4 / 5;
+        /* La photo suit le scroll tant que la zone parent (colonne) est visible.
+           Elle s'arrête automatiquement quand le bas de la colonne est atteint. */
+        position: sticky;
+        top: 100px;
     }
     .event-photo {
         width: 100%;
