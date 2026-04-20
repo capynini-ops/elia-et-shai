@@ -46,7 +46,7 @@
         const audio = document.getElementById('bgMusic');
         const btn = document.getElementById('btnMusic');
         if (audio && btn) {
-            audio.volume = 0.4;
+            audio.volume = 0.2;
             audio.play()
                 .then(() => {
                     btn.classList.add('is-playing');
