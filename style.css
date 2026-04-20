@@ -1146,3 +1146,49 @@ body.envelope-open {
         padding: 2rem 0.5rem 1rem;
     }
 }
+
+/* ============================================================
+   FOOTER CRÉDIT (petit footer discret en bas de page)
+   ============================================================ */
+.site-footer-credit {
+    padding: 2rem 1rem 2.5rem;
+    text-align: center;
+    background: var(--primary-ghost);
+    border-top: 1px solid var(--primary-pale);
+}
+
+.site-footer-credit p {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.site-footer-credit a {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+.site-footer-credit a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.site-footer-credit a:hover {
+    color: var(--primary);
+}
+
+.site-footer-credit a:hover::after {
+    width: 100%;
+}
