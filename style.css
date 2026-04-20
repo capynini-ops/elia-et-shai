@@ -394,13 +394,21 @@ h1, h2, h3, h4, h5, h6 {
 /* ======================== HOUPPA HERO (image pleine largeur) ======================== */
 .houppa-hero {
     width: 100%;
-    /* Compensation de la navbar fixe (qui mesure ~80-90px avec logo 72px) */
-    padding-top: 90px;
-    padding-bottom: 2rem;
+    padding: 2rem 1.5rem;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     background: var(--bg-cream);
+}
+
+/* Le premier hero de la section Houppa compense la navbar fixe */
+#cocktail .houppa-hero:first-of-type {
+    padding-top: 110px;
+}
+
+/* Les hero suivants ont un espacement réduit au-dessus pour coller à l'élément précédent */
+#cocktail .houppa-hero + .houppa-hero {
+    padding-top: 0;
 }
 
 .houppa-invitation {
@@ -842,10 +850,13 @@ h1, h2, h3, h4, h5, h6 {
         --bs-gutter-y: 1.75rem;
     }
 
-    /* Sur mobile, la Houppa hero colle en haut sans padding horizontal */
+    /* Sur mobile, la Houppa hero a des marges latérales pour respirer */
     .houppa-hero {
-        padding-top: 70px;
-        padding-bottom: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    #cocktail .houppa-hero:first-of-type {
+        padding-top: 90px;
     }
 
     /* Boutons map : plus d'espace au-dessus */
