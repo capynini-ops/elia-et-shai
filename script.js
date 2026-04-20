@@ -1,6 +1,6 @@
 /* ============================================================
    WEDDING SITE — script.js
-   SPA Navigation, URL Permissions, Countdown, RSVP Form
+   Enveloppe intro, URL Permissions, Countdown, RSVP Form, Musique
    ============================================================ */
 
 (function () {
@@ -93,15 +93,15 @@
         const showMairie = level === 'classico' || level === 'latotale';
         const showChabat = level === 'latotale';
 
-        // Navigation
+        // Masquer/afficher les SECTIONS entières via la classe .section-hidden
         document.querySelectorAll('.nav-mairie').forEach(el => {
-            el.style.display = showMairie ? '' : 'none';
+            el.classList.toggle('section-hidden', !showMairie);
         });
         document.querySelectorAll('.nav-chabat').forEach(el => {
-            el.style.display = showChabat ? '' : 'none';
+            el.classList.toggle('section-hidden', !showChabat);
         });
 
-        // Champs RSVP conditionnels
+        // Champs RSVP conditionnels (inchangé — toujours en display inline)
         document.querySelectorAll('.rsvp-field-mairie').forEach(el => {
             el.style.display = showMairie ? '' : 'none';
         });
@@ -109,68 +109,6 @@
             el.style.display = showChabat ? '' : 'none';
         });
     }
-
-    // =====================================================
-    // SPA NAVIGATION
-    // =====================================================
-    const navLinks = document.querySelectorAll('[data-section]');
-    const sections = document.querySelectorAll('.page-section');
-
-    function navigateTo(sectionId) {
-        const level = getInviteLevel();
-
-        // Vérifier que la section est accessible
-        if (sectionId === 'mairie' && level !== 'classico' && level !== 'latotale') {
-            sectionId = 'accueil';
-        }
-        if (sectionId === 'chabat' && level !== 'latotale') {
-            sectionId = 'accueil';
-        }
-
-        // Masquer toutes les sections
-        sections.forEach(sec => {
-            sec.classList.remove('active', 'visible');
-        });
-
-        // Afficher la section cible
-        const target = document.getElementById(sectionId);
-        if (target) {
-            target.classList.add('active');
-            // Petit délai pour déclencher la transition CSS
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    target.classList.add('visible');
-                });
-            });
-        }
-
-        // Mettre à jour les liens actifs
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-section') === sectionId) {
-                link.classList.add('active');
-            }
-        });
-
-        // Fermer le menu mobile
-        const navCollapse = document.getElementById('navMenu');
-        const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
-        if (bsCollapse) bsCollapse.hide();
-
-        // Scroll en haut
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        // Navbar : masquer sur accueil
-        updateNavbarVisibility(sectionId);
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const section = this.getAttribute('data-section');
-            navigateTo(section);
-        });
-    });
 
     // =====================================================
     // COUNTDOWN (avec mois)
@@ -214,31 +152,6 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // =====================================================
-    // NAVBAR : masquer sur accueil, afficher sur les autres
-    // =====================================================
-    const mainNav = document.getElementById('mainNav');
-
-    function updateNavbarVisibility(sectionId) {
-        if (sectionId === 'accueil') {
-            mainNav.classList.add('nav-hidden');
-        } else {
-            mainNav.classList.remove('nav-hidden');
-        }
-    }
-
-    // =====================================================
-    // NAVBAR SCROLL EFFECT
-    // =====================================================
-    window.addEventListener('scroll', function () {
-        const nav = document.getElementById('mainNav');
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
-    });
 
     // =====================================================
     // RSVP FORM
@@ -351,20 +264,6 @@
     // INITIALISATION
     // =====================================================
     applyPermissions();
-
-    // Masquer la navbar fixe sur l'accueil (le menu est dans le hero)
-    updateNavbarVisibility('accueil');
-
-    // Afficher la section Accueil avec animation
-    const accueil = document.getElementById('accueil');
-    if (accueil) {
-        accueil.classList.add('active');
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                accueil.classList.add('visible');
-            });
-        });
-    }
 
     // =====================================================
     // MUSIQUE DE FOND

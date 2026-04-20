@@ -59,107 +59,19 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
-/* ======================== NAVBAR ======================== */
-#mainNav {
-    background: rgba(250, 248, 253, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(172, 151, 207, 0.12);
-    padding: 0.4rem 0;
-    transition: var(--transition);
-    z-index: 1050;
-}
-
-#mainNav.nav-hidden {
-    transform: translateY(-100%);
-    pointer-events: none;
-}
-
-#mainNav.scrolled {
-    background: rgba(250, 248, 253, 0.95);
-    box-shadow: var(--shadow-soft);
-    padding: 0.25rem 0;
-}
-
-.navbar-brand {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0;
-}
-
-.navbar-logo {
-    height: 72px;
-    width: auto;
-    transition: var(--transition);
-}
-
-#mainNav.scrolled .navbar-logo {
-    height: 60px;
-}
-
-.nav-link {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-body) !important;
-    padding: 0.5rem 1rem !important;
-    position: relative;
-    transition: var(--transition);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: var(--transition);
-}
-
-.nav-link:hover,
-.nav-link.active {
-    color: var(--primary-dark) !important;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 60%;
-}
-
-.navbar-toggler {
-    border: 1px solid var(--primary-light);
-    padding: 0.4rem 0.6rem;
-}
-
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 3px rgba(172, 151, 207, 0.25);
-}
-
 /* ======================== PAGES / SECTIONS ======================== */
+/* Mode monopage : toutes les sections sont visibles et s'enchaînent en scroll.
+   Elles sont masquées uniquement via .section-hidden (permissions URL). */
 .page-section {
-    display: none;
-    min-height: 100vh;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.page-section.active {
     display: block;
 }
 
-.page-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+.page-section.section-hidden {
+    display: none;
 }
 
 .section-content {
-    padding: 120px 0 80px;
+    padding: 60px 0 80px;
 }
 
 /* ======================== HERO V2 ======================== */
@@ -190,47 +102,6 @@ h1, h2, h3, h4, h5, h6 {
     direction: rtl;
     margin-bottom: 1.5rem;
     letter-spacing: 0.03em;
-}
-
-/* Nav intégrée dans le hero */
-.hero-nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.hero-nav-link {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--text-body);
-    text-decoration: none;
-    padding: 0.3rem 0;
-    position: relative;
-    transition: var(--transition);
-}
-
-.hero-nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: var(--transition);
-}
-
-.hero-nav-link:hover {
-    color: var(--primary-dark);
-}
-
-.hero-nav-link:hover::after {
-    width: 100%;
 }
 
 /* Photo du couple */
@@ -394,8 +265,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ======================== HOUPPA — Layout section entière ======================== */
 .houppa-wrapper {
     background: var(--bg-cream);
-    /* Compense la navbar fixe en haut de la section */
-    padding-top: 100px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 /* Colonne PHOTO (gauche en desktop, dessus en mobile) */
@@ -472,7 +343,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 991.98px) {
     .houppa-photo-col {
         margin-bottom: 2rem;
-        padding-top: 1rem;
     }
 }
 
@@ -859,20 +729,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ======================== RESPONSIVE ======================== */
-@media (max-width: 991.98px) {
-    .navbar-collapse {
-        background: rgba(250, 248, 253, 0.98);
-        border-radius: var(--radius);
-        margin-top: 0.5rem;
-        padding: 1rem;
-        box-shadow: var(--shadow-soft);
-    }
-
-    .nav-link {
-        padding: 0.6rem 1rem !important;
-    }
-}
-
 @media (max-width: 767.98px) {
     .hero-names {
         font-size: clamp(2.5rem, 12vw, 4rem);
@@ -910,11 +766,6 @@ h1, h2, h3, h4, h5, h6 {
     /* Gap plus généreux entre les éléments de la grille sur mobile */
     .row.align-items-center.g-4 {
         --bs-gutter-y: 1.75rem;
-    }
-
-    /* Sur mobile, on réduit la compensation navbar pour la section Houppa */
-    .houppa-wrapper {
-        padding-top: 85px;
     }
 
     /* Boutons map : plus d'espace au-dessus */
