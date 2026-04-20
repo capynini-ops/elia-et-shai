@@ -15,6 +15,64 @@
     // URL du Google Apps Script déployé (remplace par ton URL)
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzuTKCTphiEIBc6t1fSQqgRrzwh1gJUFA5BFjafW3I1K4m1xTVf6tV6PdrFke-Zr6b/exec';
 
+    // Clé de session pour mémoriser l'ouverture de l'enveloppe
+    const ENVELOPE_KEY = 'envelopeOpened';
+
+    // =====================================================
+    // OVERLAY ENVELOPPE (intro)
+    // =====================================================
+    const envelopeOverlay = document.getElementById('envelopeOverlay');
+    const envelope = document.getElementById('envelope');
+
+    // Si déjà ouvert dans cette session, on masque tout de suite
+    if (envelopeOverlay && sessionStorage.getItem(ENVELOPE_KEY) === 'true') {
+        envelopeOverlay.style.display = 'none';
+    } else if (envelopeOverlay) {
+        // Empêcher le scroll du body tant que l'overlay est actif
+        document.body.classList.add('envelope-open');
+    }
+
+    function openEnvelope() {
+        if (!envelopeOverlay) return;
+
+        // Marque comme ouvert dans cette session
+        try { sessionStorage.setItem(ENVELOPE_KEY, 'true'); } catch (e) { /* silencieux */ }
+
+        // Déclenche l'animation d'ouverture
+        envelopeOverlay.classList.add('is-opening');
+        document.body.classList.remove('envelope-open');
+
+        // Tente de lancer la musique (le clic sur l'enveloppe EST l'interaction utilisateur)
+        const audio = document.getElementById('bgMusic');
+        const btn = document.getElementById('btnMusic');
+        if (audio && btn) {
+            audio.volume = 0.4;
+            audio.play()
+                .then(() => {
+                    btn.classList.add('is-playing');
+                    btn.setAttribute('aria-pressed', 'true');
+                    btn.setAttribute('aria-label', 'Couper la musique');
+                })
+                .catch(() => { /* silencieux : l'utilisateur pourra cliquer sur le bouton */ });
+        }
+
+        // Retire complètement l'overlay du DOM après l'animation
+        setTimeout(() => {
+            envelopeOverlay.style.display = 'none';
+        }, 800);
+    }
+
+    if (envelope) {
+        envelope.addEventListener('click', openEnvelope);
+        // Support clavier (accessibilité)
+        envelope.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openEnvelope();
+            }
+        });
+    }
+
     // =====================================================
     // PERMISSIONS PAR PARAMÈTRE URL
     // =====================================================
