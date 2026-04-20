@@ -403,7 +403,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Le premier hero de la section Houppa compense la navbar fixe */
 #cocktail .houppa-hero:first-of-type {
-    padding-top: 110px;
+    padding-top: 130px;
 }
 
 /* Les hero suivants ont un espacement réduit au-dessus pour coller à l'élément précédent */
@@ -852,11 +852,11 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Sur mobile, la Houppa hero a des marges latérales pour respirer */
     .houppa-hero {
-        padding: 1.5rem 1rem;
+        padding: 1rem 1rem;
     }
 
     #cocktail .houppa-hero:first-of-type {
-        padding-top: 90px;
+        padding-top: 110px;
     }
 
     /* Boutons map : plus d'espace au-dessus */
