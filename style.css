@@ -1168,27 +1168,13 @@ body.envelope-open {
 
 .site-footer-credit a {
     color: var(--primary-dark);
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
     font-weight: 500;
-    position: relative;
     transition: color 0.25s ease;
-}
-
-.site-footer-credit a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background: var(--primary);
-    transition: width 0.3s ease;
 }
 
 .site-footer-credit a:hover {
     color: var(--primary);
-}
-
-.site-footer-credit a:hover::after {
-    width: 100%;
 }
