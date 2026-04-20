@@ -947,6 +947,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+
 /* ============================================================
    OVERLAY ENVELOPPE (écran d'intro)
    ============================================================ */
@@ -959,7 +960,9 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    /* perspective : crée la profondeur 3D pour les transformations 3D des enfants */
+    perspective: 1200px;
+    transition: opacity 0.6s ease 0.6s, visibility 0.6s ease 0.6s;
 }
 
 .envelope-overlay.is-opening {
@@ -968,14 +971,17 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
 }
 
+/* Conteneur de l'enveloppe */
 .envelope {
     position: relative;
     width: min(400px, 90vw);
     aspect-ratio: 400 / 280;
     cursor: pointer;
-    transform: scale(1);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Animation flottante légère avant le clic */
     animation: envelopeFloat 3s ease-in-out infinite;
+    /* Préserve les transformations 3D des enfants */
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .envelope:hover,
@@ -984,17 +990,54 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
 }
 
-.envelope:active {
-    transform: scale(0.98);
+/* Corps de l'enveloppe (fond lilas) */
+.envelope-body {
+    position: absolute;
+    inset: 10% 5% 0 5%;
+    background: var(--primary);
+    border-radius: 4px;
+    box-shadow:
+        0 10px 30px rgba(110, 86, 158, 0.3),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.envelope-svg {
+/* Lignes de pli diagonales sur le corps (effet enveloppe) */
+.envelope-body::before,
+.envelope-body::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
-    display: block;
+    background: linear-gradient(to top right, transparent 49.7%, var(--primary-dark) 49.7%, var(--primary-dark) 50.3%, transparent 50.3%);
+    opacity: 0.25;
 }
 
-/* Sceau de cire avec logo */
+.envelope-body::after {
+    background: linear-gradient(to top left, transparent 49.7%, var(--primary-dark) 49.7%, var(--primary-dark) 50.3%, transparent 50.3%);
+}
+
+/* Rabat triangulaire (pivote au clic) */
+.envelope-flap {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    right: 5%;
+    /* Hauteur du rabat : moitié de la hauteur totale de l'enveloppe */
+    height: 47%;
+    background: var(--primary-dark);
+    /* Forme triangulaire via clip-path */
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    /* Le pivot est en haut du rabat (bord supérieur de l'enveloppe) */
+    transform-origin: 50% 0%;
+    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    /* Au-dessus du corps pour cacher le sceau au départ ? Non, le sceau est par dessus */
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Sceau de cire avec logo (reste visible, s'envole à l'ouverture) */
 .envelope-seal {
     position: absolute;
     top: 50%;
@@ -1011,7 +1054,11 @@ h1, h2, h3, h4, h5, h6 {
         inset 0 -4px 10px rgba(0, 0, 0, 0.3),
         inset 0 4px 10px rgba(255, 255, 255, 0.15),
         0 6px 20px rgba(0, 0, 0, 0.25);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Le sceau est au-dessus de tout pour être visible */
+    z-index: 3;
+    transition:
+        transform 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.3s,
+        opacity 0.5s ease 0.5s;
 }
 
 /* Bord ondulé du sceau (simulant la cire pressée) */
@@ -1020,11 +1067,10 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: -6px;
     border-radius: 50%;
-    background:
-        repeating-conic-gradient(
-            var(--primary-darker) 0deg 12deg,
-            var(--primary-dark) 12deg 24deg
-        );
+    background: repeating-conic-gradient(
+        var(--primary-darker) 0deg 12deg,
+        var(--primary-dark) 12deg 24deg
+    );
     z-index: -1;
     opacity: 0.9;
     filter: blur(1px);
@@ -1056,9 +1102,34 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     white-space: nowrap;
     animation: hintPulse 2s ease-in-out infinite;
+    transition: opacity 0.3s ease;
 }
 
-/* Animations */
+/* ================= ÉTAT "OUVERT" ================= */
+
+/* Le rabat pivote vers l'arrière (ouverture de l'enveloppe) */
+.envelope.is-open .envelope-flap {
+    transform: rotateX(-180deg);
+}
+
+/* Le sceau se détache vers le haut et disparaît */
+.envelope.is-open .envelope-seal {
+    transform: translate(-50%, -300%) scale(0.6) rotate(-15deg);
+    opacity: 0;
+}
+
+/* Stoppe le flottement quand on ouvre */
+.envelope.is-open {
+    animation: none;
+}
+
+/* Le hint disparaît immédiatement au clic */
+.envelope.is-open .envelope-hint {
+    opacity: 0;
+}
+
+/* ================= ANIMATIONS ================= */
+
 @keyframes envelopeFloat {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-8px); }
@@ -1067,14 +1138,6 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes hintPulse {
     0%, 100% { opacity: 0.6; }
     50%      { opacity: 1; }
-}
-
-/* Désactiver les animations quand l'enveloppe s'ouvre */
-.envelope-overlay.is-opening .envelope {
-    animation: none;
-    transform: scale(1.2);
-    opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 /* Responsive */
@@ -1093,4 +1156,121 @@ h1, h2, h3, h4, h5, h6 {
 /* Empêcher le scroll du body quand l'overlay est actif */
 body.envelope-open {
     overflow: hidden;
+}
+
+/* ============================================================
+   HOUPPA — BLOC TEXTE D'INVITATION
+   ============================================================ */
+.houppa-invite-text {
+    padding: 3rem 1rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.houppa-invite-text p,
+.houppa-invite-text h2 {
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+}
+
+.invite-intro {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 2rem !important;
+}
+
+.invite-names {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    font-weight: 500;
+    color: var(--primary);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem !important;
+}
+
+.invite-names-hebrew {
+    font-family: var(--font-hebrew);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    color: var(--primary);
+    direction: rtl;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 2.5rem !important;
+}
+
+.invite-date {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.4rem, 3vw, 1.75rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 3rem !important;
+}
+
+.invite-event {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem !important;
+}
+
+.invite-time {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem !important;
+}
+
+.invite-address {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem !important;
+}
+
+.invite-closing {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 3rem !important;
+}
+
+.invite-closing em {
+    font-style: italic;
+}
+
+.invite-memorial {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 400;
+    color: var(--text-muted);
+    opacity: 0.85;
+    max-width: 620px;
+    margin: 0 auto !important;
+}
+
+/* Responsive : sur mobile, les noms hébreux s'empilent si l'écran est très étroit */
+@media (max-width: 480px) {
+    .invite-names-hebrew {
+        gap: 2rem;
+    }
+    .houppa-invite-text {
+        padding: 2rem 0.5rem 1rem;
+    }
 }
