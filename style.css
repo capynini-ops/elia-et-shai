@@ -930,6 +930,20 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1;
 }
 
+/* Sur desktop, la photo apparaît EN ENTIER (pas de recadrage) avec un fond derrière */
+@media (min-width: 768px) {
+    .intro-overlay {
+        background: var(--primary-ghost);
+    }
+    .intro-overlay-photo {
+        object-fit: contain;
+    }
+    /* Voile plus léger pour préserver le fond lilas autour de la photo */
+    .intro-overlay::after {
+        background: linear-gradient(180deg, rgba(58, 26, 109, 0.05) 0%, rgba(58, 26, 109, 0.25) 100%);
+    }
+}
+
 /* Voile sombre pour garantir la lisibilité du bouton */
 .intro-overlay::after {
     content: '';
