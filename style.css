@@ -475,6 +475,70 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ======================== MAIRIE & HENNÉ — Layout section entière ======================== */
+.mairie-wrapper {
+    background: var(--bg-cream);
+    /* Compense la navbar fixe en haut de la section */
+    padding-top: 100px;
+    padding-bottom: 3rem;
+}
+
+/* Colonne PHOTO (gauche en desktop, dessus en mobile) */
+.mairie-photo-col {
+    padding: 0 1.5rem;
+}
+
+.mairie-photo-wrap {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.mairie-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Colonne CONTENU (droite en desktop, dessous en mobile) */
+.mairie-content-col {
+    padding: 0 1.5rem;
+}
+
+/* Chaque bloc (Mairie + Henné) contient carte + boutons maps */
+.mairie-block {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ===== Desktop (lg+) : photo collante à gauche, contenu qui scrolle à droite ===== */
+@media (min-width: 992px) {
+    .mairie-photo-col {
+        position: sticky;
+        top: 100px;
+        padding-left: 2rem;
+        padding-right: 1rem;
+    }
+
+    .mairie-photo {
+        max-height: calc(100vh - 140px);
+        object-fit: cover;
+    }
+
+    .mairie-content-col {
+        padding-left: 1rem;
+        padding-right: 2rem;
+    }
+}
+
+/* ===== Mobile (sous 992px) : photo dessus, contenu dessous ===== */
+@media (max-width: 991.98px) {
+    .mairie-photo-col {
+        margin-bottom: 2rem;
+    }
+}
+
 .event-detail {
     display: flex;
     align-items: flex-start;
@@ -905,8 +969,9 @@ h1, h2, h3, h4, h5, h6 {
         --bs-gutter-y: 1.75rem;
     }
 
-    /* Sur mobile, on réduit la compensation navbar pour la section Houppa */
-    .houppa-wrapper {
+    /* Sur mobile, on réduit la compensation navbar pour les sections en layout sticky */
+    .houppa-wrapper,
+    .mairie-wrapper {
         padding-top: 85px;
     }
 
