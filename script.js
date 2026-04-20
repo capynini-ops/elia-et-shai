@@ -13,8 +13,7 @@
     const WEDDING_DATE = new Date(2026, 6, 29, 17, 30, 0);
 
     // URL du Google Apps Script déployé (remplace par ton URL)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzuTKCTphiEIBc6t1fSQqgRrzwh1gJUFA5BFjafW3I1K4m1xTVf6tV6PdrFke-Zr6b/exec';
-
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSFCRChzA9hsJ6mzmgz1RCRNmJ2iRhQ-di8q-2MBCwbPh_Rx8Jq0TfFFdWkB5LmF6w/exec';
     // =====================================================
     // PERMISSIONS PAR PARAMÈTRE URL
     // =====================================================
@@ -190,6 +189,34 @@
     const successCard = document.getElementById('rsvpSuccess');
     const btnSubmit = document.getElementById('btnSubmit');
 
+    // ----- Affichage conditionnel des "nombre de personnes" selon Oui/Non -----
+    // Paires : [nom du groupe radio, id du wrapper du select nb personnes]
+    const presenceToggles = [
+        { radioName: 'presenceMairie',   wrapId: 'nbMairieWrap' },
+        { radioName: 'presenceCocktail', wrapId: 'nbCocktailWrap' },
+        { radioName: 'presenceChabat',   wrapId: 'nbChabatWrap' }
+    ];
+
+    // Fonction qui met à jour la visibilité d'un wrapper selon l'état des radios
+    function syncNbWrap(radioName, wrap) {
+        const checked = form.querySelector(`input[name="${radioName}"]:checked`);
+        wrap.style.display = (checked && checked.value === 'Oui') ? '' : 'none';
+    }
+
+    presenceToggles.forEach(({ radioName, wrapId }) => {
+        const radios = form.querySelectorAll(`input[name="${radioName}"]`);
+        const wrap = document.getElementById(wrapId);
+        if (!wrap) return;
+
+        // Synchro initiale (utile si le navigateur pré-remplit le formulaire au rechargement)
+        syncNbWrap(radioName, wrap);
+
+        // Synchro à chaque changement de radio
+        radios.forEach(radio => {
+            radio.addEventListener('change', () => syncNbWrap(radioName, wrap));
+        });
+    });
+
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
@@ -199,16 +226,34 @@
             return;
         }
 
+        // Helper : si la personne dit Oui, prend la valeur du select ; sinon 0
+        // Si l'événement n'est pas disponible pour son niveau d'invitation : vide
+        const getNbPersonnes = (presenceValue, selectEl, isInvited) => {
+            if (!isInvited) return '';
+            if (presenceValue === 'Oui') return selectEl?.value || '1';
+            return '0';
+        };
+
         // Collecter les données
         const level = getInviteLevel();
+        const isMairieInvited  = (level === 'classico' || level === 'latotale');
+        const isChabatInvited  = (level === 'latotale');
+
+        const presenceMairie   = isMairieInvited ? (form.presenceMairie?.value   || '') : 'Non invité';
+        const presenceCocktail = form.presenceCocktail?.value || '';
+        const presenceChabat   = isChabatInvited ? (form.presenceChabat?.value   || '') : 'Non invité';
+
         const data = {
             nom: form.nom.value.trim(),
             email: form.email.value.trim(),
             telephone: form.telephone.value.trim(),
-            nbInvites: form.nbInvites.value,
-            presenceCocktail: form.presenceCocktail?.value || '',
-            presenceMairie: (level === 'classico' || level === 'latotale') ? (form.presenceMairie?.value || '') : 'Non invité',
-            presenceChabat: level === 'latotale' ? (form.presenceChabat?.value || '') : 'Non invité',
+            presenceMairie:   presenceMairie,
+            nbMairie:   getNbPersonnes(presenceMairie,   form.nbMairie,   isMairieInvited),
+            presenceCocktail: presenceCocktail,
+            nbCocktail: getNbPersonnes(presenceCocktail, form.nbCocktail, true),
+            presenceChabat:   presenceChabat,
+            nbChabat:   getNbPersonnes(presenceChabat,   form.nbChabat,   isChabatInvited),
+            message: form.message.value.trim(),
             inviteLevel: level,
             date: new Date().toLocaleString('fr-FR')
         };

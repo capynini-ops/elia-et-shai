@@ -373,21 +373,6 @@
                                 <label for="telephone" class="form-label">Téléphone</label>
                                 <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="06 00 00 00 00">
                             </div>
-                            <!-- Nombre d'invités -->
-                            <div class="mb-4">
-                                <label for="nbInvites" class="form-label">Nombre de personnes (vous inclus) <span class="required">*</span></label>
-                                <select class="form-select" id="nbInvites" name="nbInvites" required>
-                                    <option value="" disabled selected>Choisir</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="5">6</option>
-                                    <option value="5">7</option>
-                                    <option value="5">8+</option>
-                                </select>
-                            </div>
 
                             <!-- === PRÉSENCE MAIRIE (conditionnel) === -->
                             <div class="mb-4 rsvp-field-mairie" style="display:none;">
@@ -402,6 +387,20 @@
                                         <input class="form-check-input" type="radio" name="presenceMairie" id="mairieNon" value="Non">
                                         <label class="form-check-label" for="mairieNon">Non</label>
                                     </div>
+                                </div>
+                                <!-- Nb personnes (apparaît si Oui) -->
+                                <div class="nb-personnes-wrap mt-3" id="nbMairieWrap" style="display:none;">
+                                    <label for="nbMairie" class="form-label">Nombre de personnes (vous inclus)</label>
+                                    <select class="form-select" id="nbMairie" name="nbMairie">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8+</option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -419,6 +418,20 @@
                                         <label class="form-check-label" for="cocktailNon">Non</label>
                                     </div>
                                 </div>
+                                <!-- Nb personnes (apparaît si Oui) -->
+                                <div class="nb-personnes-wrap mt-3" id="nbCocktailWrap" style="display:none;">
+                                    <label for="nbCocktail" class="form-label">Nombre de personnes (vous inclus)</label>
+                                    <select class="form-select" id="nbCocktail" name="nbCocktail">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8+</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <!-- === PRÉSENCE CHABAT (conditionnel) === -->
@@ -435,6 +448,26 @@
                                         <label class="form-check-label" for="chabatNon">Non</label>
                                     </div>
                                 </div>
+                                <!-- Nb personnes (apparaît si Oui) -->
+                                <div class="nb-personnes-wrap mt-3" id="nbChabatWrap" style="display:none;">
+                                    <label for="nbChabat" class="form-label">Nombre de personnes (vous inclus)</label>
+                                    <select class="form-select" id="nbChabat" name="nbChabat">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- === PETIT MOT POUR LES MARIÉS === -->
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Un petit mot pour nos mariés</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Partagez-nous vos meilleurs vœux, une anecdote, un conseil..."></textarea>
                             </div>
 
                             <!-- Submit -->
