@@ -392,7 +392,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1rem 0 0 0;
 }
 
 .event-detail:last-child {
