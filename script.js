@@ -13,7 +13,7 @@
     const WEDDING_DATE = new Date(2026, 6, 29, 17, 30, 0);
 
     // URL du Google Apps Script déployé (remplace par ton URL)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzuTKCTphiEIBc6t1fSQqgRrzwh1gJUFA5BFjafW3I1K4m1xTVf6tV6PdrFke-Zr6b/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSFCRChzA9hsJ6mzmgz1RCRNmJ2iRhQ-di8q-2MBCwbPh_Rx8Jq0TfFFdWkB5LmF6w/exec';
 
     // Clé de session pour mémoriser l'ouverture de l'enveloppe
     const ENVELOPE_KEY = 'envelopeOpened';
